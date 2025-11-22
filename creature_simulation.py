@@ -168,7 +168,7 @@ if __name__ == "__main__":
     print("=== Tests Completed ===")
     print()
 
-    print("=== FireCreatureCreature Tests ===\n")
+    print("=== FireCreature Tests ===\n")
     ploy = FireCreature("ploy", 60, 8)
     ploy.emit_fire(30)
     print(f"Fire level should be 30 → Actual: {ploy.fire_level}")
