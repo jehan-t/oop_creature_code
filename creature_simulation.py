@@ -68,6 +68,30 @@ class SwimmingCreature(Creature):
             target.hp = 0
         print(f"{target.name} HP is now {target.hp}")
 
+class FireCreature(Creature):
+    def __init__(self, name, hp, attack_power):
+        super().__init__(name, hp, attack_power)
+        self.fire_level = 0
+
+    def emit_fire(self, new_fire_level):
+        if not 0 <= new_fire_level <= 100:
+            return self.fire_level
+        
+        self.fire_level = new_fire_level
+        print(f"{self.name} fire skill level to {self.fire_level}.")
+
+    def attack(self, target):
+        if not self.is_alive():
+            print(f"{self.name} cannot attack because it is already dead.")
+            return
+
+        print(f"{self.name} cast spell with fire at level {self.fire_level}!")
+        print(f"It hit {target.name} for {self.attack_power} damage!")
+        target.hp -= self.attack_power + self.fire_level
+        if target.hp < 0:
+            target.hp = 0
+        print(f"{target.name} HP is  {target.hp}")
+
 if __name__ == "__main__":
     print("=== Creature Class Tests ===\n")
 
@@ -128,7 +152,8 @@ if __name__ == "__main__":
     hawk.attack(dummy)
     print(f"Dummy HP should be 32 → Actual: {dummy.hp}")
     dummy.attack(hawk)
-    print()    print("=== Tests Completed ===")
+    print()    
+    print("=== Tests Completed ===")
     print()
 
     print("=== SwimmingCreature Tests ===\n")
@@ -142,3 +167,14 @@ if __name__ == "__main__":
     print()
     print("=== Tests Completed ===")
     print()
+
+    print("=== FireCreatureCreature Tests ===\n")
+    ploy = FireCreature("ploy", 60, 8)
+    ploy.emit_fire(30)
+    print(f"Fire level should be 30 → Actual: {ploy.fire_level}")
+
+    dummy = Creature("Practice Dummy", 40, 0)
+    ploy.attack(dummy)
+    print(f"Dummy HP should be 2 → Actual: {dummy.hp}")
+    print()
+    print("=== Tests Completed ===")
